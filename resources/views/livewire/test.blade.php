@@ -1,3 +1,4 @@
-<div class="p-5">
+<form wire:submit.prevent="submit" class="p-5">
     {{ $this->form }}
-</div>
+    <button type="submit">Submit</button>
+</form>

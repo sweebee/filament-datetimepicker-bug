@@ -11,14 +11,20 @@ class Test extends Component implements Forms\Contracts\HasForms
 
     use Forms\Concerns\InteractsWithForms;
 
-    public $date, $title;
+    public $items = [];
 
     protected function getFormSchema(): array
     {
         return [
-            Forms\Components\DateTimePicker::make('date')->reactive(),
-            Forms\Components\TextInput::make('title')->visible(fn(Closure $get) => $get('date')),
+            Forms\Components\Repeater::make('items')->schema([
+                Forms\Components\FileUpload::make('image')
+            ])->cloneable()
         ];
+    }
+
+    public function submit()
+    {
+            dd($this->form->getState());
     }
 
     public function render()
